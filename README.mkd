@@ -4,3 +4,20 @@ Place two files `GeoLite2-City.mmdb` and `GeoLite2-Country.mmdb` in `tmp/`
 directory, which can be downloaded from ![MaxMind][geolite2-data1]
 
 [geolite2-data1]: http://dev.maxmind.com/geoip/geoip2/geolite2/
+
+# Benchmark Result
+
+```
+$ gradle run
+:compileJava
+:processResources UP-TO-DATE
+:classes
+:run
+83246.60/sec (total:832466, hit-rate:0.84)
+96898.20/sec (total:968982, hit-rate:0.84)
+102610.20/sec (total:1026102, hit-rate:0.84)
+
+BUILD SUCCESSFUL
+
+Total time: 33.876 secs
+```
