@@ -1,8 +1,9 @@
 # Preparation
 
 Place two files `GeoLite2-City.mmdb` and `GeoLite2-Country.mmdb` in `tmp/`
-directory, which can be downloaded from
-![MaxMind][http://dev.maxmind.com/geoip/geoip2/geolite2/]
+directory, which can be downloaded from [MaxMind][geolite2-data1]
+
+[geolite2-data1]: http://dev.maxmind.com/geoip/geoip2/geolite2/
 
 # Benchmark Result
 
@@ -21,6 +22,8 @@ BUILD SUCCESSFUL
 Total time: 33.876 secs
 ```
 
-MaxMind-DB is slower 16-20 times than
-![IPv4 binsearch][https://github.com/koron/ipv4_binsearch/blob]
-(1685574.80/sec),
+Comparing with
+MaxMind-DB is slower 16-20 times than 
+[IPv4 binsearch][ipv4binsearch] (1685574.80/sec),
+
+[ipv4binsearch]: https://github.com/koron/ipv4_binsearch/blob
