@@ -1,0 +1,6 @@
+# Preparation
+
+Place two files `GeoLite2-City.mmdb` and `GeoLite2-Country.mmdb` in `tmp/`
+directory, which can be downloaded from ![MaxMind][geolite2-data1]
+
+[geolite2-data1]: http://dev.maxmind.com/geoip/geoip2/geolite2/
