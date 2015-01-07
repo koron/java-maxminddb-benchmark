@@ -47,37 +47,39 @@ public class Main {
         return InetAddress.getByAddress(b);
     }
 
-    private static void queryMany(Reader reader) {
-        long seed = 0;
-        long sec = 10;
-        try {
-            Random rand = new Random(seed);
-            long hitCount = 0;
-            long queryCount = 0;
-            long end = System.currentTimeMillis() + sec * 1000;
-            while (System.currentTimeMillis() < end) {
-                InetAddress addr = nextAddress(rand);
-                JsonNode n = reader.get(addr);
-                if (n != null) {
-                    ++hitCount;
+    private static Consumer<Reader> makeQuery(final long seed, final long sec)
+    {
+        return (reader) -> {
+            try {
+                Random rand = new Random(seed);
+                long hitCount = 0;
+                long queryCount = 0;
+                long end = System.currentTimeMillis() + sec * 1000;
+                while (System.currentTimeMillis() < end) {
+                    InetAddress addr = nextAddress(rand);
+                    JsonNode n = reader.get(addr);
+                    if (n != null) {
+                        ++hitCount;
+                    }
+                    ++queryCount;
                 }
-                ++queryCount;
+                System.out.println(String.format(
+                            "%1.2f/sec (total:%2$d, hit-rate:%3$.2f)",
+                            (float)queryCount / sec,
+                            queryCount,
+                            (float)hitCount / queryCount));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            System.out.println(String.format(
-                        "%1.2f/sec (total:%2$d, hit-rate:%3$.2f)",
-                        (float)queryCount / sec,
-                        queryCount,
-                        (float)hitCount / queryCount));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        };
     }
 
     public static void main(String[] args) throws Exception {
         //findOne(args.length == 0 ? "24.24.24.24" : args[0]);
-        runCity(Main::queryMany);
-        runCity(Main::queryMany);
-        runCity(Main::queryMany);
+        Consumer<Reader> query = makeQuery(0, 10);
+        runCity(query);
+        runCity(query);
+        runCity(query);
     }
 
 }
