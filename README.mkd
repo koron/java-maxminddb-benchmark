@@ -21,3 +21,8 @@ BUILD SUCCESSFUL
 
 Total time: 33.876 secs
 ```
+
+MaxMind-DB is slower 16-20 times than
+![IPv4 binsearch][ipv4binsearch] (1685574.80/sec),
+
+[ipv4binsearch]: https://github.com/koron/ipv4_binsearch/blob
